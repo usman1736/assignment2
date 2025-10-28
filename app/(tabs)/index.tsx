@@ -6,6 +6,7 @@ import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import React from "react";
 import {
+  FlatList,
   ScrollView,
   StyleSheet,
   Text,
@@ -17,34 +18,42 @@ const Home = () => {
     {
       name: "Reel",
       logo: <FontAwesome6 name="photo-film" size={24} color="black" />,
+      id: "1",
     },
     {
       name: "Room",
       logo: <FontAwesome name="video-camera" size={24} color="black" />,
+      id: "2",
     },
     {
       name: "Group",
       logo: <FontAwesome name="group" size={24} color="black" />,
+      id: "3",
     },
     {
       name: "Live",
       logo: <MaterialIcons name="live-tv" size={24} color="black" />,
+      id: "4",
     },
     {
       name: "...",
       logo: <Feather name="x" size={24} color="black" />,
+      id: "5",
     },
     {
       name: "...",
       logo: <Feather name="x" size={24} color="black" />,
+      id: "6",
     },
     {
       name: "...",
       logo: <Feather name="x" size={24} color="black" />,
+      id: "7",
     },
     {
       name: "...",
       logo: <Feather name="x" size={24} color="black" />,
+      id: "8",
     },
   ];
   return (
@@ -64,17 +73,42 @@ const Home = () => {
         <Entypo name="images" size={24} color="green" />
       </View>
       <ScrollView
-        contentContainerStyle={styles.headingThreeContainer}
+        style={styles.headingThreeContainer}
         horizontal
         showsHorizontalScrollIndicator={false}
       >
         {iconsOne.map((item, index) => (
-          <TouchableOpacity key={index} style={styles.headingThreeIcons}>
-            {item.logo}
-            <Text>{item.name}</Text>
-          </TouchableOpacity>
+          <View key={index} style={styles.containerThree}>
+            <TouchableOpacity style={styles.headingThreeIcons}>
+              {item.logo}
+              <Text>{item.name}</Text>
+            </TouchableOpacity>
+          </View>
         ))}
       </ScrollView>
+      <ScrollView
+        style={styles.headingFourContainer}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+      >
+        {iconsOne.map((item, index) => (
+          <View key={index} style={styles.containerFour}>
+            <TouchableOpacity
+              style={styles.headingFourIcons}
+            ></TouchableOpacity>
+          </View>
+        ))}
+      </ScrollView>
+      <FlatList
+        data={iconsOne}
+        keyExtractor={(item) => item.id}
+        renderItem={(item) => (
+          <View style={styles.post}>
+            <Text style={styles.postHeader}></Text>
+            <Text style={styles.postPicture}></Text>
+          </View>
+        )}
+      />
     </View>
   );
 };
@@ -131,22 +165,57 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   headingThreeContainer: {
-    flexDirection: "row",
+    height: 100,
     backgroundColor: "#d3d3d3",
     borderBottomWidth: 10,
-    padding: 15,
     borderColor: "gray",
+  },
+  containerThree: {
+    flexDirection: "row",
     alignItems: "center",
-    gap: 10,
   },
   headingThreeIcons: {
+    flexDirection: "row",
     height: 40,
     width: 100,
     borderRadius: 30,
     backgroundColor: "white",
     alignItems: "center",
     justifyContent: "center",
-    flexDirection: "row",
+    marginHorizontal: 10,
     gap: 5,
+  },
+  headingFourContainer: {
+    height: 300,
+    backgroundColor: "#d3d3d3",
+    borderBottomWidth: 10,
+    borderColor: "gray",
+  },
+  containerFour: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  headingFourIcons: {
+    height: 180,
+    width: 130,
+    borderRadius: 20,
+    backgroundColor: "white",
+    marginHorizontal: 10,
+  },
+  post: {
+    width: "100%",
+    height: 400,
+    borderBottomWidth: 10,
+    borderBottomColor: "gray",
+  },
+  postHeader: {
+    flex: 1,
+    width: "100%",
+    backgroundColor: "white",
+  },
+  postPicture: {
+    flex: 6,
+    width: "100%",
+    backgroundColor: "black",
   },
 });
