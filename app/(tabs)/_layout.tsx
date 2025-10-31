@@ -2,13 +2,14 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+
 import { Tabs } from "expo-router";
 
 export default function RootLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarStyle: { backgroundColor: "white", height: 60 },
+        tabBarStyle: { backgroundColor: "white", height: 70 },
         headerShown: false,
         tabBarActiveTintColor: "#1877F2",
       }}

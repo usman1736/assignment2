@@ -4,15 +4,20 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import React from "react";
+
 import {
   FlatList,
+  Platform,
   ScrollView,
+  StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
+
+import React from "react";
+
 const Home = () => {
   const iconsOne = [
     {
@@ -57,7 +62,7 @@ const Home = () => {
     },
   ];
   return (
-    <View>
+    <View style={styles.container}>
       <View style={styles.headingContainer}>
         <Text style={styles.title}>Facebook</Text>
         <View style={[styles.logoContainer, styles.logoBorder]}>
@@ -116,12 +121,14 @@ const Home = () => {
 export default Home;
 
 const styles = StyleSheet.create({
+  container: {
+    marginTop: Platform.OS !== "android" ? 0 : StatusBar.currentHeight,
+  },
   headingContainer: {
     flexDirection: "row",
     alignItems: "center",
     position: "relative",
     justifyContent: "flex-end",
-    marginTop: 10,
   },
   title: {
     fontSize: 25,
